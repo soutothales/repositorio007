@@ -1,0 +1,49 @@
+.checkbox:checked{
+    background-color: blue;
+}
+
+.btn-circle {
+  display: block;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  margin-right: 1px;
+  padding: 4px 4px 6px 4px;
+  font-size: 12px;
+  color: white;
+  line-height: 1.428571429;
+  border-radius: 100%;
+  float: left;
+}
+
+.link-alike {
+  background:none!important;
+  border:none;
+  padding:0!important;
+  font: inherit;
+  cursor: pointer;
+}
+
+.checked-background {
+  background-color: #DEEEFF;
+}
+
+.pesquisar {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid Steelblue;
+  width: 80%;
+  margin: 15px 15px 15px 0px;
+}
+
+.fotoMenu {
+  width: 48px;
+  height: 48px;
+  margin-right: 15px;
+}
+
+.pesquisa-linha {
+  margin-left: 25px;
+  width: 30%;
+}

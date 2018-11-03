@@ -1,0 +1,219 @@
+<div ng-controller="perfil-controller">
+  <div class="container-fluid">
+
+    <div class="col-md-4">
+      <div class="panel panel-primary">
+        <div class="panel-heading">{{user.nome || 'Sem nome'}}
+          <span class="pull-right"  ng-show="!loading && podeEditar">
+            <i class="fa fa-pencil fa-fw" ng-click="editarPerfilModal()" ng-show="podeEditar"></i>
+          </span>
+        </div>
+
+        <div class="panel-body">
+          <div>
+            <div>
+              <span us-spinner="{radius:30, width:8, length: 50}" ng-show="loading"></span>
+              <div class="img-wrap">
+                <img width="218px" ngf-select="upload($file)" ng-show="user.avatarUrl && podeMudarAvatar"
+                  src={{user.avatarUrl}}>
+                <img width="218px" ng-show="user.avatarUrl && !podeMudarAvatar"
+                  src={{user.avatarUrl}}>
+                <div class="img-desc" ng-show="podeMudarAvatar" ngf-select="upload($file)">
+                  <span class="glyphicon glyphicon-camera"></span>
+                  <p>Atualizar Foto</p>
+                </div>
+              </div>
+            </div>
+            <ul class="list-group">
+              <li class="list-group-item">
+                Nivel: {{user.nivel}}
+              </li>
+              <li class="list-group-item">
+                Email: {{user.email}}
+              </li>
+              <li class="list-group-item">
+                Projeto: {{user.projeto.nome || 'Sem projeto'}}
+              </li>
+              <li class="list-group-item">
+                Sala: {{user.sala.localizacao || 'Sem sala'}}
+              </li>
+              <li class="list-group-item" ng-show="podeEditar">
+                <button class="btn btn-primary" ng-click="alterarSenhaModal()"
+                ng-disabled="loading"> Alterar senha </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+      <div class="col-md-8">
+        <div class="info">
+
+          <div class="panel panel-primary">
+            <div class="panel-heading">{{'sobre' | translate}}
+              <div class="pull-right">
+                <span ng-show="!loading && podeEditar">
+                  <i class="fa fa-pencil fa-fw" ng-show="podeEditar" ng-click="editarDescricao()"></i>
+                </span>
+                <span ng-show="!loading && editandoDescricao">
+                  <i class="fa fa-check-circle-o" ng-click="atualizarDescricao()"></i>
+                </span>
+              </div>
+            </div>
+            <textarea class="form-control" rows="10" ng-disabled=!editandoDescricao
+              ng-style="{cursor: !editandoDescricao ? 'default' : 'text'}"
+              style="resize:none" ng-model="descricao"></textarea>
+          </div>
+
+          <div class="panel panel-primary">
+            <div class="panel-heading"> Habilidades
+              <div class="pull-right">
+                <span ng-show="!loading && podeEditar">
+                  <i class="fa fa-pencil fa-fw" ng-show="podeEditar" ng-click="editarCompetencias()"></i>
+                </span>
+                <span>
+                  <i class="fa fa-check-circle-o" ng-click="atualizarCompetencias()"
+                  ng-show="!loading && editandoCompetencias"></i>
+                </span>
+              </div>
+
+            </div>
+
+            <div class="tag-input-ctn">
+              <div ng-repeat="(key, tag) in inputTags" class="input-tag">
+                {{ tag.name }}
+                <div class="delete-tag" ng-click="deleteTag(key)" ng-show="!loading && editandoCompetencias">&times;</div>
+              </div>
+
+              <input id="competencias" type="text" size="50" ng-blur="addTag()"
+                ng-model="tagText" ng-show="editandoCompetencias"
+                ng-change="tagListener()" ng-keypress="checkIfEnterKeyWasPressed($event)">
+
+            </div>
+          </div>
+
+        </div>
+
+        <div>
+          <div class="panel panel-primary">
+            <div class="panel-heading ">
+              Agenda
+            </div>
+
+            <div ng-include="'/templates/agenda.html'"></div>
+          </div>
+       </div>
+
+      </div>
+
+
+      <!---------------------------------------- MODAL ------------------------------------------->
+
+      <!-- MODAL EDITAR DADOS -------------------->
+
+      <div id="addhor" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="gridSystemModalLabel">Editar Perfil</h4>
+            </div>
+            <div class="modal-body">
+
+              <div class="tab-content">
+                <div class="tab-pane active">
+                  <form role="form" class="form-horizontal">
+                    <div class="form-group">
+                      <label for="nome" class="col-sm-2 control-label">Nome</label>
+                        <div class="col-sm-10">
+                          <div class="row">
+                            <div class="col-md-9">
+                              <input type="text" class="form-control" id="nome" placeholder="Nome"
+                                     ng-model="nome"
+                                     maxlength="100"/>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="email" class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="email" placeholder="Email"
+                                 ng-model="email"
+                                 maxlength="100"/>
+                        </div>
+                      </div>
+
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" ng-click="updateDados()" data-dismiss="modal">Salvar Alterações</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!-- MODAL ALTERAR SENHA ------------------------------------>
+
+        <div id="alterarSenha" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="gridSystemModalLabel">Alterar Senha</h4>
+              </div>
+              <div class="modal-body">
+
+                <div class="tab-content">
+                  <div class="tab-pane active">
+                    <form role="form" class="form-horizontal">
+                      <div class="form-group">
+                        <label for="senhaAtual" class="col-sm-2 control-label"> Senha Atual</label>
+                          <div class="col-sm-10">
+                            <div class="row">
+                              <div class="col-md-9">
+                                <input type="password" class="form-control" id="senhaAtual" placeholder="Senha Atual" ng-model="senhaAtual"/>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="novaSenha" class="col-sm-2 control-label">Nova Senha</label>
+                          <div class="col-sm-10">
+                            <input type="password" class="form-control" id="novaSenha" placeholder="Nova Senha" ng-model="novaSenha" maxlength="12"/>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="novaSenhaConfirmar" class="col-sm-2 control-label">Confirmar senha</label>
+                          <div class="col-sm-10">
+                            <input type="password" class="form-control" id="novaSenha2" placeholder="Repetir nova senha" ng-model="novaSenhaConfirmar"/>
+                            <small id="password_match" class="help-inline help-error" ng-show="novaSenhaConfirmar != novaSenha" style="color: red;">As senhas não coincidem</small>
+                          </div>
+                        </div>
+
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="novaSenhaConfirmar=''; novaSenha=''; senhaAtual=''">Cancelar</button>
+                      <button type="button" class="btn btn-primary" ng-click="alterarSenha(); novaSenhaConfirmar=''; novaSenha=''; senhaAtual=''" data-dismiss="modal">Salvar Alterações</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+    </div>
+
+</div>

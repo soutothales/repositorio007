@@ -1,0 +1,58 @@
+<div class="container">
+	<div class="container">
+
+		<div class="col-md-4 container">
+			<div ng-controller="users-controller">
+				<div class="panel panel-primary">
+					<div class="panel-heading ">
+						Usuários
+					</div>
+
+					<div ng-include="'/templates/viewLateralAgenda.html'"></div>
+				</div>
+		 	</div>
+			<div>
+				<button class="btn btn-primary" ng-click="limparAgenda()"> Limpar Agenda</button>
+			</div>
+		</div>
+
+
+		<div class="col-md-8 container">
+			<div class="panel panel-primary">
+				<div class="panel-heading ">
+					Agendas
+				</div>
+				<table class="table table-striped table table-bordered">
+						<thead>
+							<tr>
+
+							<th> </th>
+							<th>Segunda</th>
+    						<th>Terça</th>
+    						<th>Quarta</th>
+							<th>Quinta</th>
+							<th>Sexta</th>
+							<th>Sábado</th>
+
+
+						</tr>
+
+					</thead>
+
+					<tbody class="container-fluid">
+
+					<tr ng-repeat="(horaIndex, hora) in horas">
+							<td>{{hora}}</td>
+						<td ng-repeat="(horarioIndex, horario) in horariosEmComum"
+							ng-class="{'checked-background': horariosEmComum[horarioIndex][horaIndex].checked}">
+							<div ng-repeat="userInfo in horariosEmComum[horarioIndex][horaIndex].users"
+								class="btn-circle" style="background-color: {{userInfo.cor}}"
+								data-toggle="tooltip" title="{{userInfo.nome}}"><i>{{userInfo.nome[0]}}</i></div>
+						</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

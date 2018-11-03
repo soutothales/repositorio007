@@ -1,0 +1,12 @@
+
+.item-avatar  {
+    width:100% !important;
+    height : 20% !important;
+    max-width: 100% !important;  //any size
+    max-height: 20% !important; //any size
+    margin-top:0px;
+}
+
+.side-menu {
+    
+}

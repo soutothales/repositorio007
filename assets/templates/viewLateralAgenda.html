@@ -1,0 +1,39 @@
+<div class="container-fluid" style="background-color:white;" ng-controller="users-controller">
+
+
+    <form class="form-inline my-2 my-lg-0">
+      <input id="pesquisar" class="pesquisar mr-sm-2" type="text" placeholder="Pesquisar" ng-model="userPesquisado" maxlength="25">
+      <span ng-click="userPesquisado=''" class="fa fa-close"></span>
+    </form>
+    <div class="row">
+      <ul class="nav nav-tabs">
+        <li ng-class="{active: tab == ''}"><a ng-click="showUsers('')">Todos</a></li>
+        <li ng-class="{active: tab == 'aluno'}"><a ng-click="showUsers('aluno')">Alunos</a></li>
+        <li ng-class="{active: tab == 'coach'}"><a ng-click="showUsers('coach')" >Coaches</a></li>
+        <li ng-class="{active: tab == 'gerente'}"><a ng-click="showUsers('gerente')">Gerentes</a></li>
+      </ul>
+    </div>
+
+  <div class="table-responsive" style="max-height:530px;height:470px;overflow: scroll">
+    <table class="table table-striped table table-bordered">
+      <thead>
+
+      </thead>
+
+      <tbody >
+
+        <tr ng-repeat="user in usersLateral | filter: {nome: userPesquisado}" ng-show="user.agenda">
+
+          <td ng-click="toggleUsuario(user)" style="background-color: {{getBgColor(user)}}; color: {{getFontColor(user)}}">
+            <img class="img-circle fotoMenu" width="48px" ng-show="user.avatarUrl" src="{{user.avatarUrl}}">
+            <button class="link-alike" ng-disabled="state.loading">{{user.nome}}</button>
+            <h6>Projeto: {{user.projeto.nome || 'Sem projeto'}} | Sala: {{user.sala.localizacao || 'Sem sala'}}</h6>
+          </td>
+
+
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>

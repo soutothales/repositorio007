@@ -1,0 +1,54 @@
+<ion-modal-view class="dark-bg">
+   <ion-header-bar class="bar bar-header bar-dark">
+     <h1 class="title">Criar novo Usuário</h1>
+     <button class="button button-clear button-primary" ng-click="modal.hide()">Cancelar</button>
+   </ion-header-bar>
+   <ion-content class="padding">
+     <div class="list">
+       <label class="item item-input">
+         <span class="input-label">Login</span>
+         <input ng-model="newUser.login" type="text">
+       </label>
+
+       <label class="item item-input">
+         <span class="input-label">Senha</span>
+         <input ng-model="newUser.senha" type="password">
+       </label>
+
+       <label class="item item-input item-select">
+           <div class="input-label">
+               Nivel
+           </div>
+           <select ng-model="newUser.nivel">
+               <option selected>Aluno</option>
+               <option>Coach</option>
+               <option>Gerente</option>
+           </select>
+        </label>
+
+       <label class="item item-input">
+         <span class="input-label">Nome</span>
+         <input ng-model="newUser.nome" type="text">
+       </label>
+
+       <label class="item item-input">
+         <span class="input-label">Email</span>
+         <input ng-model="newUser.email" type="text">
+       </label>
+
+       <label class="item item-input item-select">
+           <div class="input-label">
+               Projeto
+           </div>
+           <select ng-model="newUser.projeto">
+               <option selected></option>
+               <option>ASUS</option>
+               <option>HUAWEI</option>
+               <option>SONY</option>
+           </select>
+        </label>
+
+       <button class="button button-full darker-bg" ng-click="createUser(newUser); modal.hide()">Criar</button>
+     </div>
+   </ion-content>
+ </ion-modal-view>

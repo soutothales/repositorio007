@@ -1,0 +1,162 @@
+<div ng-controller="projeto-controller">
+  <div class="container-fluid">
+
+    <div class="col-md-3">
+      <div class="panel panel-primary">
+        <div class="panel-heading">Selecionar Projetos</div>
+
+        <div class="panel-body table-sem-cabecalho">
+            <table class="table table-striped table table-bordered">
+                <thead>
+                    <tr style="border: bold;color:#1E90FF">
+
+                        <th> Projeto	</th>
+
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr ng-repeat="projeto in projetos" ng-class="{'blue-bg': projeto.id === projetoSelecionado.id}">
+
+                        <td ng-click="showAlunosNoProjeto(projeto)">
+                            <p>{{projeto.nome}}</p>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="criarProjetoModal()">Criar Projeto</button>
+
+    </div>
+
+
+    <div class="col-md-5">
+        <div class="">
+
+          <div class="panel panel-primary">
+            <div class="panel-heading">Usuários no projeto selecionado </div>
+            <div class="panel-body table-sem-cabecalho">
+                <form class="form-inline my-2 my-lg-0">
+                    <input id="pesquisar" class="pesquisar mr-sm-2" type="text" placeholder="Pesquisar" ng-model="userNoProjetoPesquisado" maxlength="25">
+                    <span ng-click="userNoProjetoPesquisado=''" class="fa fa-close"></span>
+                </form>
+                <table class="table table-striped table table-bordered">
+                    <thead>
+                        <tr style="border: bold;color:#1E90FF">
+
+                            <th> Nome	</th>
+
+                            <th> Remover</th>
+
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr ng-repeat="user in alunosAndCoachesNoProjeto | filter: {nome: userNoProjetoPesquisado}">
+
+                            <td>
+                                <img class="img-circle fotoMenu" width="48px" ng-show="user.avatarUrl" src="{{user.avatarUrl}}">
+                                <a ng-click="visualizarUser(user)">{{user.nome}}</a>
+                            </td>
+
+                            <td>
+                                <i class="fa fa-close" ng-click="removerUser(user)">
+
+                                </i>
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+          </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="panel panel-primary">
+        <div class="panel-heading">Usuários sem projeto</div>
+        <div class="panel-body table-sem-cabecalho">
+            <form class="form-inline my-2 my-lg-0">
+                <input id="pesquisar" class="pesquisar mr-sm-2" type="text" placeholder="Pesquisar" ng-model="userSemProjetoPesquisado" maxlength="25">
+                <span ng-click="userSemProjetoPesquisado=''" class="fa fa-close"></span>
+            </form>
+            <table class="table table-striped table table-bordered">
+                <thead>
+                    <tr style="border: bold;color:#1E90FF">
+
+                        <th> Usuário </th>
+
+                        <th></th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr ng-repeat="user in alunosAndCoaches  | filter: {nome: userSemProjetoPesquisado}" ng-show="projetoSelecionado">
+                        <td>
+                           <a ng-click="visualizarUser(user)">{{user.nome}}</a>
+                        </td>
+
+                        <td>
+                            <i class="fa fa-plus-square" ng-click="addUser(user)"> </i>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!------------------------------------------- CRIAR PROJETO MODAL --------------------------------------------------->
+ <div id="criarProjetoModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+     <div class="modal-dialog" role="document">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                 <h4 class="modal-title" id="gridSystemModalLabel">Criar Projeto</h4>
+             </div>
+             <div class="modal-body">
+
+                 <div class="tab-content">
+                     <div class="tab-pane active">
+                         <form role="form" class="form-horizontal">
+                             <div class="form-group">
+                                 <label for="nome" class="col-sm-2 control-label">Nome</label>
+                                 <div class="col-sm-10">
+                                     <div class="row">
+                                         <div class="col-md-9">
+                                             <input type="text" class="form-control" id="nome" placeholder="Nome"
+                                                    ng-model="nome"
+                                                    maxlength="20"/>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+
+                         </form>
+                     </div>
+                     <div class="modal-footer">
+                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                         <button type="button" class="btn btn-primary" ng-click="criarProjeto()" data-dismiss="modal">Criar</button>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
+
+</div>

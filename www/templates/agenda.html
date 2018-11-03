@@ -1,0 +1,44 @@
+<div>
+	<div style="text-align: center">
+		<div class="row">
+
+			<div class="column"> </div>
+			<div class="column">Seg</div>
+			<div class="column">Ter</div>
+			<div class="column">Qua</div>
+			<div class="column">Qui</div>
+			<div class="column">Sex</div>
+			<div class="column">Sáb</div>
+
+
+		</div>
+
+		<div class="row height-lg" ng-repeat="hora in horas track by $index">
+
+			<div class="column">{{hora}}</div>
+
+			<div class="column border" ng-repeat="horario in horariosEditados track by $index"
+				 ng-class="horario[$parent.$index].checked ? 'blue-bg' : 'dark-bg'"
+				 ng-click="mudaHorario($index, $parent.$index)">
+
+				<i class="icon ion-ios-circle-outline big" ng-show="!horario[$parent.$index].checked && editAgenda"></i>
+				<i class="icon ion-ios-circle-filled big" ng-show="horario[$parent.$index].checked && editAgenda"></i>
+			</div>
+
+		</div>
+
+	</div>
+	<div style="text-align: center">
+		Total de horas: {{horasTrabalhadas}}
+	</div>
+	<div>
+		<div class="center" style="padding-bottom: 10px">
+			<button class="button small dark-bg" ng-click="editarAgenda();"
+					ng-show="podeEditar && !editAgenda">Editar Horários</button>
+		</div>
+		<div ng-show="editAgenda">
+			<i class="icon ion-checkmark right big" style="padding-right: 30px" ng-click="salvarHorarios()"></i>
+			<i class="icon ion-close big" style="padding-left: 30px" ng-click="cancelarEdicaoAgenda()"></i>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,40 @@
+<ion-side-menus>
+
+      <ion-pane ion-side-menu-content>
+        <ion-nav-view name="menuContent" animation="slide-right-right"></ion-nav-view>
+      </ion-pane>
+
+      <ion-side-menu side="left">
+          <div class="bar bar-subheader">
+              <div class="tabs container">
+                  <a class="tab-item active" ng-click="viewAll()">
+                      Todos
+                  </a>
+                  <a class="tab-item" ng-click="viewByNivel('aluno')">
+                      Alunos
+                  </a>
+                  <a class="tab-item" ng-click="viewByNivel('coach')">
+                      Coaches
+                  </a>
+                  <a class="tab-item" ng-click="viewByNivel('gerente')">
+                      Gerentes
+                  </a>
+              </div>
+          </div>
+          <ion-content class="has-subheader">
+              <div class="tabs-striped tabs-top tabs-background-positive tabs-color-light has-subheader">
+                  <ion-list>
+                      <ion-item class="item-avatar item-icon-right" ng-repeat="user in users"
+                                type="item-text-wrap" ng-click="viewUser(user)">
+
+                          <img src="{{ user.avatarUrl }}">
+                          <h2>{{user.nome}}</h2>
+                          <p>Projeto/Sala</p>
+                          <i class="icon ion-chevron-right icon-accessory"></i>
+
+                      </ion-item>
+                  </ion-list>
+              </div>
+          </ion-content>
+      </ion-side-menu>
+</ion-side-menus>

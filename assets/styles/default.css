@@ -1,0 +1,15 @@
+#cover {
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   opacity: 0.30;
+   background: #707a94;
+   z-index: 10;
+}
+
+.blue-bg {
+   background: rgba(51,122,183,0.72) !important;
+   color: white !important;
+}

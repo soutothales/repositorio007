@@ -1,0 +1,14 @@
+
+<div class=div-home>
+
+  <div class="div-homelogado" ng-if="logado">
+    <div ng-include="'/templates/homeLogado.html'"></div>
+
+  </div>
+
+  <div class="div-login" ng-if="!logado">
+    <div ng-include="'/templates/login.html'"></div>
+
+  </div>
+
+</div>

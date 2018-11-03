@@ -1,0 +1,11 @@
+.table-style {
+    max-height:500px;
+    height:500px;
+    overflow: scroll;
+}
+
+.table-sem-cabecalho {
+    max-height:580px;
+    height:580px;
+    overflow: scroll;
+}

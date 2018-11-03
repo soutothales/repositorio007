@@ -1,0 +1,76 @@
+<div>
+    <ion-view title="Perfil" cache-view="false" class="darker-bg">
+        <ion-nav-bar class="bar bar-header bar-dark">
+            <ion-nav-back-button></ion-nav-back-button>
+        </ion-nav-bar>
+        <ion-nav-buttons side="left">
+            <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+        </ion-nav-buttons>
+        <ion-content class="has-header">
+            <div class="list card center darker-bg">
+                <h3 style="color: rgb(200,231,255)">
+                    {{user.nome}}
+                </h3>
+                <div>
+                    <div class="profile-avatar item-image">
+                        <img src="{{ user.avatarUrl }}" ng-click="uploadAvatar()"/>
+                    </div>
+                    <div class="avatar-camera">
+                        <i class="icon ion-camera big"></i>
+                    </div>
+                </div>
+                <div class="item dark-bg">
+                    Nível: {{user.nivel}}
+                </div>
+                <div class="item dark-bg">
+                    Email: {{user.email}}
+                </div>
+                <div class="item dark-bg">
+                    Projeto: {{user.projeto.nome || 'Sem projeto'}}
+                </div>
+                <div class="item dark-bg">
+                    Sala: {{user.sala.localizacao || 'Sem sala'}}
+                </div>
+            </div>
+            <div class="list card dark-bg" ng-init="descricao = false; habilidades = false; agenda = false;">
+                <div class="item bar dark-bg" ng-click="descricao = !descricao">
+                    Sobre
+                </div>
+                <div class="item light-bg" ng-show="descricao">
+                    <div>
+                        <textarea rows="3" class="light-bg" ng-model="user.descricao"
+                                  ng-show="user.descricao && editDescricao"
+                                  style="resize: none; width: 100%;" focus-on="inputDescricao"></textarea>
+                        <p ng-show="!editDescricao" ng-click="editarDescricao()">{{user.descricao || 'Nenhuma informação'}}</p>
+                    </div>
+                    <i class="icon ion-checkmark right big" ng-show="editDescricao" ng-click="confirmarDescricao()"></i>
+                    <i class="icon ion-close big" ng-show="editDescricao" ng-click="cancelarDescricao()"></i>
+                </div>
+                <div class="item bar dark-bg" ng-click="habilidades = !habilidades">
+                    Habilidades
+                </div>
+                <div class="item light-bg" ng-show="habilidades">
+                    <div ng-click="editCompetencias = true">
+                        <div class="tag-input-ctn" ng-show="user.competencias.length > 0">
+                            <div ng-repeat="competencia in user.competencias" class="input-tag">
+                                {{ competencia }}
+                                <div class="delete-tag" ng-click="deletarCompetencia(competencia)" ng-show="editCompetencias">&times;</div>
+                            </div>
+                        </div>
+                        <p ng-show="user.competencias.length == 0 && !editCompetencias">Nenhuma informação</p>
+                    </div>
+                    <i class="icon ion-plus right big" ng-show="editCompetencias" ng-click="abrirPopupCompetencias()"></i>
+                    <i class="icon ion-close big" ng-show="editCompetencias" ng-click="editCompetencias = false"></i>
+                </div>
+                <div class="item bar dark-bg" ng-click="agenda = !agenda">
+                    Agenda
+                </div>
+                <div class="darker-bg" ng-show="agenda">
+                    <div class="item darker-bg">
+                        <div ng-include="'templates/agenda.html'"></div>
+                    </div>
+                </div>
+            </div>
+        </ion-content>
+    </ion-view>
+</div>

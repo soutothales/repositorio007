@@ -1,0 +1,44 @@
+#descricao {
+  height: 50%;
+}
+
+#competencias {
+  height: 50%;
+}
+
+#editSobre {
+  white-space: nowrap;
+}
+
+.pencil {
+  background-color: transparent;
+}
+
+.fa {
+  font-size:24px;
+}
+
+.fa-fw {
+}
+
+.img-wrap {
+  width: 218px;
+  margin: auto;
+}
+
+.img-desc {
+  position: relative;
+  bottom: 40px;
+  margin-bottom: -50px;
+  left: 0px;
+  text-align: center;
+  background: black;
+  color: #fff;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.img-wrap:hover .img-desc {
+  visibility: visible;
+  opacity: 0.8;
+}

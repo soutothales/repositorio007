@@ -1,0 +1,49 @@
+<ion-view title="Selecionar Usuários" hide-back-button="true">
+
+    <ion-nav-bar class="bar bar-header bar-dark">
+        <ion-nav-back-button></ion-nav-back-button>
+    </ion-nav-bar>
+
+
+    <ion-nav-buttons side="left">
+      <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+
+    <div class="bar bar-subheader">
+        <div class="tabs container">
+            <a class="tab-item" ng-class="{active: tab == ''}" ng-click="viewAll(); tab=''">
+                Todos
+            </a>
+            <a class="tab-item" ng-class="{active: tab == 'aluno'}" ng-click="viewByNivel('aluno'); tab = 'aluno' ">
+                Alunos
+            </a>
+            <a class="tab-item" ng-class="{active: tab == 'coach'}" ng-click="viewByNivel('coach'); tab = 'coach' ">
+                Coaches
+            </a>
+            <a class="tab-item" ng-class="{active: tab == 'gerente'}" ng-click="viewByNivel('gerente'); tab = 'gerente' ">
+                Gerentes
+            </a>
+        </div>
+    </div>
+    <ion-content class="has-subheader">
+        <div class="tabs-striped tabs-top tabs-background-positive tabs-color-light">
+            <ion-list>
+                <ion-item  class="item-avatar item-icon-right dark-bg" style="background-color: {{getBgColor(user)}}!; color: {{getFontColor(user)}}!" ng-repeat="user in users"
+                          type="item-text-wrap">
+                        <img src="{{ user.avatarUrl }}">
+                        <h2>{{user.nome}}</h2>
+                        <p>Projeto/Sala</p>
+                        <i class="icon ion-chevron-right icon-accessory"></i>
+                </ion-item>
+            </ion-list>
+        </div>
+    </ion-content>
+
+    <ion-tabs class="tabs-icon-top tabs-striped">
+      <ion-tab title="Agendas" icon-on="ion-ios-list" icon-off="ion-ios-list-outline" ui-sref="app.agendas">
+      </ion-tab>
+
+      <ion-tab title="Amigos" icon-on="ion-ios-people" icon-off="ion-ios-people-outline" ui-sref="app.users-tab">
+      </ion-tab>
+    </ion-tabs>
+  </ion-view>

@@ -1,0 +1,51 @@
+<div ng-controller="agenda-controller">
+			<div class="table-responsive" style="background-color:white; text-align:center">
+				<table class="table table-striped table table-bordered">
+					<thead>
+						<tr>
+
+							<th> </th>
+							<th>Segunda</th>
+        			<th>Terça</th>
+        			<th>Quarta</th>
+							<th>Quinta</th>
+							<th>Sexta</th>
+							<th>Sábado</th>
+
+
+						</tr>
+
+					</thead>
+
+					<tbody>
+
+						<tr ng-repeat="hora in horas track by $index">
+
+							<td>{{hora}}</td>
+
+							<!-- ng-style="background-color: checked ? blue : white" -->
+
+							<td ng-repeat="horario in horariosEditados track by $index"
+							    ng-style="{ 'background-color' : horario[$parent.$index].checked ? 'SteelBlue' : 'white' }"
+									ng-click="toggleHorario($index, $parent.$index)">
+
+								<input ng-show="editView" type="checkbox" ng-checked="horario[$parent.$index].checked">
+
+							</td>
+
+
+
+						</tr>
+
+					</tbody>
+				</table>
+				Total de horas: {{horasTrabalhadas}}
+				<div>
+						<button class="btn btn-primary" ng-click="editView=true"
+										ng-show="podeEditar">Editar Horários</button>
+						<button class="btn btn-success" ng-show="editView" ng-click="salvaHorarios(); editView=false">Salvar</button>
+						<button class="btn btn-danger" ng-show="editView" ng-click="cancelarEdicao(); editView=false">Cancelar</button>
+				</div>
+
+			</div>
+</div>

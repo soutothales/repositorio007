@@ -1,0 +1,52 @@
+<ion-side-menus>
+    <ion-side-menu-content>
+
+        <ion-side-menu-content>
+
+          <ion-nav-bar class="bar-positive" >
+
+            <ion-nav-back-button class="button-icon ion-arrow-left-c"></ion-nav-back-button>
+
+            <ion-nav-buttons side="left">
+              <button class="button button-icon button-clear ion-navicon" ng-click="toggleLeft()">
+              </button>
+            </ion-nav-buttons>
+
+          </ion-nav-bar>
+
+          <ion-nav-view animation="no-animation" name="menuContent"></ion-nav-view>
+
+        </ion-side-menu-content>
+
+        <ion-side-menu side="left" class="dark-bg">
+
+              <div class="heading-item item item-avatar side-menu darker-bg">
+                <img src="https://ngumountainlaurel.files.wordpress.com/2011/11/placeholder-profile-male.jpg?w=1075">
+                <h2 class="darker-bg"> Nome</h2>
+                <h4 class="darker-bg"> Sala/Projeto </h4>
+              </div>
+
+              <ion-list>
+                <ion-item nav-clear menu-close ng-click="goToPerfil()" class="dark-bg">
+                  <i class="ion-home"></i>
+                  Perfil
+                </ion-item>
+                <ion-item nav-clear menu-close ng-click="goToUsers()" class="dark-bg">
+                  <i class="ion-person-stalker"></i>
+                  Usuários
+                </ion-item>
+                <ion-item nav-clear menu-close ng-click="goToAgendas()" class="dark-bg">
+                  <i class="ion-ios-calendar"></i>
+                  Agendas
+                </ion-item>
+                <ion-item nav-clear menu-close ng-click="logout()" class="dark-bg">
+                  <i class="ion-log-out"></i>
+                  Sair
+                </ion-item>
+              </ion-list>
+
+        </ion-side-menu>
+
+  </ion-side-menu-content>
+
+</ion-side-menus>

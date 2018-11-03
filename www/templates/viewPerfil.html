@@ -1,0 +1,55 @@
+    <ion-view title="Perfil" cache-view="false" class="darker-bg">
+        <ion-nav-bar class="bar bar-header bar-dark">
+            <ion-nav-back-button></ion-nav-back-button>
+        </ion-nav-bar>
+        <ion-nav-buttons side="left">
+            <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+        </ion-nav-buttons>
+        <ion-content class="has-header">
+            <div class="list card center darker-bg">
+                <h3 style="color: rgb(200,231,255)">
+                    {{user.nome}}
+                </h3>
+                <div class="profile-avatar item-image">
+                    <img src="{{ user.avatarUrl }}" ng-click="uploadAvatar()"/>
+                </div>
+                <div class="item dark-bg">
+                    Nível: {{user.nivel}}
+                </div>
+                <div class="item dark-bg">
+                    Email: {{user.email}}
+                </div>
+                <div class="item dark-bg">
+                    Projeto: {{user.projeto.nome || 'Sem projeto'}}
+                </div>
+                <div class="item dark-bg">
+                    Sala: {{user.sala.localizacao || 'Sem sala'}}
+                </div>
+            </div>
+            <div class="list card dark-bg" ng-init="descricao = false; habilidades = false; agenda = false;">
+                <div class="item bar dark-bg" ng-click="descricao = !descricao">
+                    Sobre
+                </div>
+                <div class="item light-bg" ng-show="descricao">
+                    <p> {{user.descricao || 'Nenhuma informação'}} </p>
+                </div>
+                <div class="item bar dark-bg" ng-click="habilidades = !habilidades">
+                    Habilidades
+                </div>
+                <div class="item light-bg" ng-show="habilidades">
+                    <div class="tag-input-ctn" ng-show="user.competencias.length > 0">
+                        <div ng-repeat="competencia in user.competencias" class="input-tag">
+                            {{ competencia }}
+                        </div>
+                    </div>
+                    <p ng-show="user.competencias.length == 0">Nenhuma informação</p>
+                </div>
+                <div class="item bar dark-bg" ng-click="agenda = !agenda">
+                    Agenda
+                </div>
+                <div class="darker-bg" ng-show="agenda">
+                    <div ng-include="'/templates/agenda.html'"></div>
+                </div>
+            </div>
+        </ion-content>
+    </ion-view>

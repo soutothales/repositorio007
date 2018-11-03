@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html ng-app="portal">
+      <head>
+        <title>Portal</title>
+
+        <!-- Viewport mobile tag for sensible mobile support -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!--STYLES-->
+        <link rel="stylesheet" href="/styles/bootstrap.css">
+        <link rel="stylesheet" href="/styles/importer.css">
+        <link rel="stylesheet" href="/styles/login.css">
+        <link rel="stylesheet" href="/styles/home.css">
+        <link rel="stylesheet" href="/styles/perfil.css">
+        <link rel="stylesheet" href="/styles/tags.css">
+        <link rel="stylesheet" href="/styles/table-style.css">
+        <link rel="stylesheet" href="/styles/agenda.css">
+        <link rel="stylesheet" href="/styles/default.css">
+        <link rel="stylesheet" href="/styles/jquery.growl.css">
+
+
+        <!--STYLES END-->
+      </head>
+
+      <body ng-controller="main-controller" ng-cloak>
+
+        <nav div="menu" class="navbar navbar-default" ng-if="logado">
+
+          <div class="container">
+
+            <ul class="nav nav-pills">
+              <li role="presentation">
+                <a class="navbar-brand" ng-click="home()">
+                  <img  src="/images/embedded.png" width="30" height="30" title="Home">
+                </a>
+              </li>
+
+              <li role="presentation"><button class="btn btn-primary btn-block btn-menu button-position" ng-click="agenda()">Agendas</button></li>
+              <li ng-show="podeVisualizar()" role="presentation"><button class="btn btn-primary btn-block btn-menu menu-button" ng-click="salas()">Salas</button></li>
+              <li ng-show="podeVisualizar()" role="presentation"><button class="btn btn-primary btn-block btn-menu menu-button" ng-click="projetos()">Projetos</button></li>
+
+                 <div class="btn-group pull-right">
+                   <span type="button" class="btn dropdown-toggle btn-menu" data-toggle="dropdown" aria-expanded="false">
+                     {{userSession.nome}} <span class="caret"></span>
+                   </span>
+
+                   <ul class="dropdown-menu" role="menu">
+                     <li><a ng-click="verMeuPerfil()">Perfil</a></li>
+                     <li class="divider"></li>
+                     <li><a ng-click="logout()">Sair</a></li>
+                   </ul>
+                 </div>
+
+               </li>
+
+            </ul>
+
+          </div>
+        </nav>
+
+        <div class="container">
+          <div ng-view></div>
+        </div>
+        <span us-spinner="{radius:20, width:8, length: 40}" ng-show="state.loading"></span>
+
+        <div id="cover" ng-show="state.loading"></div>
+
+          <!--TEMPLATES-->
+
+          <!--TEMPLATES END-->
+
+          <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
+          <script src="/js/dependencies/angular.js"></script>
+          <script src="/js/dependencies/angular-route.js"></script>
+          <script src="/js/dependencies/angular-translate.min.js"></script>
+          <script src="/js/dependencies/spin.min.js"></script>
+          <script src="/js/dependencies/angular-spinner.js"></script>
+          <script src="/js/dependencies/ng-file-upload.min.js"></script>
+          <script src="/js/dependencies/jquery.growl.js"></script>
+          <script src="/js/portal.js"></script>
+          <script src="/js/scriptRoutes.js"></script>
+          <script src="/js/public/controllers/main-controller.js"></script>
+          <script src="/js/public/controllers/sala-controller.js"></script>
+          <script src="/js/public/controllers/projeto-controller.js"></script>
+          <script src="/js/public/controllers/users-controller.js"></script>
+          <script src="/js/public/controllers/agenda-controller.js"></script>
+          <script src="/js/public/controllers/perfil-controller.js"></script>
+          <script src="/js/public/controllers/pesquisaAgendas-controller.js"></script>
+          <script src="/js/public/services/autenticacao-service.js"></script>
+          <script src="/js/public/services/Session-service.js"></script>
+          <script src="/js/public/services/perfil-service.js"></script>
+          <script src="/js/public/services/sala-service.js"></script>
+          <script src="/js/public/services/projeto-service.js"></script>
+          <script src="/js/public/services/constants-service.js"></script>
+          <script src="/js/public/interceptors/interceptor.js"></script>
+          <script src="/js/public/interceptors/token-interceptors.js"></script>
+          <script src="/js/public/auxiliar.js"></script>
+
+      </body>
+
+
+</html>

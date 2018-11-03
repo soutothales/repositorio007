@@ -1,0 +1,51 @@
+<ion-view title="Agendas" hide-back-button="true">
+
+    <ion-nav-bar class="bar bar-header bar-dark">
+    </ion-nav-bar>
+
+    <ion-nav-buttons side="left">
+      <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+
+    <ion-content has-header="true" padding="true">
+
+      <div class="list has-header">
+
+            <ion-tabs class="tabs-icon-top tabs-striped">
+              <ion-tab title="Seg" icon-on="ion-android-radio-button-on" icon-off="ion-android-radio-button-off">
+                  Seg
+              </ion-tab>
+
+              <ion-tab title="Ter" icon-on="ion-android-radio-button-on" icon-off="ion-android-radio-button-off">
+                  Ter
+              </ion-tab>
+
+              <ion-tab title="Qua" icon-on="ion-android-radio-button-on" icon-off="ion-android-radio-button-off">
+                  Qua
+              </ion-tab>
+
+              <ion-tab title="Qui" icon-on="ion-android-radio-button-on" icon-off="ion-android-radio-button-off">
+                  Qui
+              </ion-tab>
+
+              <ion-tab title="Sex" icon-on="ion-android-radio-button-on" icon-off="ion-android-radio-button-off">
+                  Sex
+              </ion-tab>
+
+              <ion-tab title="Sab" icon-on="ion-android-radio-button-on" icon-off="ion-android-radio-button-off">
+                  Sab
+              </ion-tab>
+            </ion-tabs>
+
+      </div>
+    </ion-content>
+
+
+    <ion-tabs class="tabs-icon-top tabs-striped">
+      <ion-tab title="Agendas" icon-on="ion-ios-list" icon-off="ion-ios-list-outline" ui-sref="app.agendas">
+      </ion-tab>
+
+      <ion-tab title="Usuários" icon-on="ion-ios-people" icon-off="ion-ios-people-outline" ui-sref="app.users-tab">
+      </ion-tab>
+    </ion-tabs>
+  </ion-view>

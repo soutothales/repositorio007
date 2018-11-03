@@ -1,0 +1,16 @@
+<ion-view view-title="" name="login-view" ng-init="user = {login: '', senha: ''}">
+  <ion-content class="padding dark-bg">
+    <div class="logo">
+      <img src="img/embedded.png">
+    </div>
+    <div class="list list-inset">
+      <label class="item item-input">
+          <input type="text" placeholder="Usuário" ng-model="user.login">
+      </label>
+      <label class="item item-input">
+          <input type="password" placeholder="Senha" ng-model="user.senha">
+      </label>
+    </div>
+      <button class="button button-block darker-bg" ng-click="login()">Entrar</button>
+  </ion-content>
+</ion-view>
